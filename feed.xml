@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-09-21T20:10:27+08:00</updated><id>http://localhost:4000/</id><title type="html">刘宁</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2017/09/21/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2017-09-21T19:51:31+08:00</published><updated>2017-09-21T19:51:31+08:00</updated><id>http://localhost:4000/jekyll/update/2017/09/21/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2017/09/21/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">linux系统服务解析</title><link href="http://localhost:4000/linux/2017/09/21/linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%9C%8D%E5%8A%A1%E8%A7%A3%E6%9E%90.html" rel="alternate" type="text/html" title="linux系统服务解析" /><published>2017-09-21T19:51:31+08:00</published><updated>2017-09-21T19:51:31+08:00</updated><id>http://localhost:4000/linux/2017/09/21/linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%9C%8D%E5%8A%A1%E8%A7%A3%E6%9E%90</id><content type="html" xml:base="http://localhost:4000/linux/2017/09/21/linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%9C%8D%E5%8A%A1%E8%A7%A3%E6%9E%90.html">&lt;h1 id=&quot;一服务的概念&quot;&gt;一：服务的概念&lt;/h1&gt;
+&lt;p&gt;服务，其实就是运行在操作系统后台的一个或者多个应用程序，为计算机系统或用户提供某项特定的服务。&lt;/p&gt;
+
+&lt;p&gt;在windows操作系统中，其在后台也运行了许许多多的服务。例如我们装的杀毒软件，其在后台运行了许多我们看不见的服务程序，通过这些服务来为用户或者计算机系统来提高特定的功能。服务通常是不中断运行的，随时准备接受请求，从而提供某项服务。例如我们日常使用的网页服务，其就是由一个运行在所访问网站的服务器上的httpd服务提供的服务，我们通过在浏览器输入需要访问网站的域名，服务器端的 httpd 服务就会随时的接收我们发送过来的请求，并响应回给我们的用户。我们Linux系统绝大多数服务都是网络服务，例如邮件服务、FTP服务、httpd服务等等，网络服务可以使为其他用户、其他计算机提供特定的服务。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 对于Linux系统，System V提供了运行级别的概念，它一共提供了7种运行级别，分别是如下的7种服务 &amp;gt;   0   关机
+ 1   单用户模式
+ 2   不带网络的多用户模式
+ 3   带网络的多用户模式，纯文本界面
+ 4   未使用
+ 5   带网络的多用户模式，图形界面
+ 6   重启
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;对于我们一般情况下的使用来说，通常使用的是级别3和级别5，每个级别下都有对应的启动、不启动的服务，比如单用户模式下，所有的服务都是不启动&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;二查看系统有哪些服务&quot;&gt;二：查看系统有哪些服务&lt;/h1&gt;
+&lt;p&gt;在/etc/rc.d/init.d下所有system v服务的运行脚本，所以要开系统有哪些服务，只要通过cd /etc/rc.d/init.d 再ls就行了，下面是以centos6.9为例子查看系统具有哪些服务。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20170909192856582?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG4xMDQ4MDA2MzE3/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast&quot; alt=&quot;这里写图片描述&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;三如何启用这些服务&quot;&gt;三：如何启用这些服务&lt;/h1&gt;
+&lt;p&gt;在centos6当中，对于所有的这些服务，我们通过 service 这个命令来进行统一的管理 命令 service 可以调用指定服务的System V脚本，并执行指定的动作具体的用法是： service 服务名 [start | stop | restart | status] 分别是启动服务、关闭服务和重新启动服务，如果要查看以运行的服务状态，则status命令，以sshd服务为例，看看开启，重启，停止，以及查看服务状态&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20170909195151098?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG4xMDQ4MDA2MzE3/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast&quot; alt=&quot;这里写图片描述&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;四查看系统中的服务的运行状态&quot;&gt;四：查看系统中的服务的运行状态&lt;/h1&gt;
+&lt;p&gt;在 /etc/rc.d/这个目录下，除了我们刚才的 init.d 这个目录，我们还发现还有其它的 一些目录，诸如 rc0.d、rc1.d等，这些目录就分别对应了系统的7种启动级别，每个目录里面都存放了许多的文件，每个文件对应着一个特定的服务，并标志有是否开机启动以及启动顺序，例如我们进入到 rc5.d 这个目录 ，会看到如下的一些文件&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20170909195817423?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG4xMDQ4MDA2MzE3/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast&quot; alt=&quot;这里写图片描述&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;我们发现，在这些目录里面，存放的都是软链接文件，不过这每一个链接文件的名字都有着严格的规定。每一个链接文件都由3部分组成。
+例如：&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;K01smartd -&amp;gt; ../init.d/smartd         S12rsyslog -&amp;gt; ../init.d/rsyslog&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;第一个部分第一个是字母K或者S，表示该服务是不是是不是开机自动启动，K表示开机不启动，S表示开机就启动&lt;/li&gt;
+  &lt;li&gt;第二个部分是字母后面的数字，这个数字代表的是该服务的启动顺序，服务启动的顺序非常的重要，例如我们的网络服务需要在邮件服务之前启动，要不然邮件服务在没有网络服务的支持下就无法正常运行了&lt;/li&gt;
+  &lt;li&gt;第三个部分就是对应服务的名字，该链接文件其实都是指向的是 init.d 这个目录下的System V脚本文件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这时候，如果我们要修改某项服务的启动顺序，可以使用chkconfig命令&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;五chkfig命令的用法&quot;&gt;五：chkfig命令的用法&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;chkconfig --list&lt;/code&gt;&lt;/strong&gt;，可以跟上服务名，单列出一项服务，不跟的话就是 查看所有服务的开机启动情况，第一列是服务名，第二列的0代表0级别下，off代表不启动，第二列的1代表1级别下，off同样是不启动，第三列的on就代表在3级别下会启动服务，以此类推&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20170909201647504?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG4xMDQ4MDA2MzE3/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast&quot; alt=&quot;这里写图片描述&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;chkconfig 服务名 on 开机自动启动，例如sshd服务&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20170909201654853?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG4xMDQ4MDA2MzE3/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast&quot; alt=&quot;这里写图片描述&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;chkconfig 服务名 off 开机不自动启动，例如sshd服务&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20170909201702627?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG4xMDQ4MDA2MzE3/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast&quot; alt=&quot;这里写图片描述&quot; /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;chkconfig –level 级别 服务名 on&lt;/td&gt;
+      &lt;td&gt;off 设置，例如将sshd服务的12345级别都设置成on&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img.blog.csdn.net/20170909202952278?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG4xMDQ4MDA2MzE3/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast&quot; alt=&quot;这里写图片描述&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">一：服务的概念 服务，其实就是运行在操作系统后台的一个或者多个应用程序，为计算机系统或用户提供某项特定的服务。 在windows操作系统中，其在后台也运行了许许多多的服务。例如我们装的杀毒软件，其在后台运行了许多我们看不见的服务程序，通过这些服务来为用户或者计算机系统来提高特定的功能。服务通常是不中断运行的，随时准备接受请求，从而提供某项服务。例如我们日常使用的网页服务，其就是由一个运行在所访问网站的服务器上的httpd服务提供的服务，我们通过在浏览器输入需要访问网站的域名，服务器端的 httpd 服务就会随时的接收我们发送过来的请求，并响应回给我们的用户。我们Linux系统绝大多数服务都是网络服务，例如邮件服务、FTP服务、httpd服务等等，网络服务可以使为其他用户、其他计算机提供特定的服务。 对于Linux系统，System V提供了运行级别的概念，它一共提供了7种运行级别，分别是如下的7种服务 &amp;gt; 0 关机 1 单用户模式 2 不带网络的多用户模式 3 带网络的多用户模式，纯文本界面 4 未使用 5 带网络的多用户模式，图形界面 6 重启 对于我们一般情况下的使用来说，通常使用的是级别3和级别5，每个级别下都有对应的启动、不启动的服务，比如单用户模式下，所有的服务都是不启动</summary></entry></feed>

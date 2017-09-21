@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>linux系统服务解析</title>
+  <meta name="description" content="一：服务的概念 服务，其实就是运行在操作系统后台的一个或者多个应用程序，为计算机系统或用户提供某项特定的服务。 在windows操作系统中，其在后台也运行了许许多多的服务。例如我们装的杀毒软件，其在后台运行了许多我们看不见的服务程序，通过这些服务来为用户或者计算机系统来提高特定的功能。服务通常是不中断运行的，随时...">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/linux/2017/09/21/linux%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%9C%8D%E5%8A%A1%E8%A7%A3%E6%9E%90.html">
+  <link rel="alternate" type="application/rss+xml" title="刘宁" href="/feed.xml">
+  
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/">刘宁</a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/about/">About</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">linux系统服务解析</h1>
+    <p class="post-meta">
+      <time datetime="2017-09-21T19:51:31+08:00" itemprop="datePublished">
+        
+        Sep 21, 2017
+      </time>
+      </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h1 id="一服务的概念">一：服务的概念</h1>
+<p>服务，其实就是运行在操作系统后台的一个或者多个应用程序，为计算机系统或用户提供某项特定的服务。</p>
+
+<p>在windows操作系统中，其在后台也运行了许许多多的服务。例如我们装的杀毒软件，其在后台运行了许多我们看不见的服务程序，通过这些服务来为用户或者计算机系统来提高特定的功能。服务通常是不中断运行的，随时准备接受请求，从而提供某项服务。例如我们日常使用的网页服务，其就是由一个运行在所访问网站的服务器上的httpd服务提供的服务，我们通过在浏览器输入需要访问网站的域名，服务器端的 httpd 服务就会随时的接收我们发送过来的请求，并响应回给我们的用户。我们Linux系统绝大多数服务都是网络服务，例如邮件服务、FTP服务、httpd服务等等，网络服务可以使为其他用户、其他计算机提供特定的服务。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> 对于Linux系统，System V提供了运行级别的概念，它一共提供了7种运行级别，分别是如下的7种服务 &gt;   0   关机
+ 1   单用户模式
+ 2   不带网络的多用户模式
+ 3   带网络的多用户模式，纯文本界面
+ 4   未使用
+ 5   带网络的多用户模式，图形界面
+ 6   重启
+</code></pre>
+</div>
+
+<p>对于我们一般情况下的使用来说，通常使用的是级别3和级别5，每个级别下都有对应的启动、不启动的服务，比如单用户模式下，所有的服务都是不启动</p>
+
+<hr />
+
+<h1 id="二查看系统有哪些服务">二：查看系统有哪些服务</h1>
+<p>在/etc/rc.d/init.d下所有system v服务的运行脚本，所以要开系统有哪些服务，只要通过cd /etc/rc.d/init.d 再ls就行了，下面是以centos6.9为例子查看系统具有哪些服务。</p>
+
+<p><img src="http://img.blog.csdn.net/20170909192856582?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG4xMDQ4MDA2MzE3/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" /></p>
+
+<hr />
+
+<h1 id="三如何启用这些服务">三：如何启用这些服务</h1>
+<p>在centos6当中，对于所有的这些服务，我们通过 service 这个命令来进行统一的管理 命令 service 可以调用指定服务的System V脚本，并执行指定的动作具体的用法是： service 服务名 [start | stop | restart | status] 分别是启动服务、关闭服务和重新启动服务，如果要查看以运行的服务状态，则status命令，以sshd服务为例，看看开启，重启，停止，以及查看服务状态</p>
+
+<p><img src="http://img.blog.csdn.net/20170909195151098?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG4xMDQ4MDA2MzE3/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" /></p>
+
+<hr />
+
+<h1 id="四查看系统中的服务的运行状态">四：查看系统中的服务的运行状态</h1>
+<p>在 /etc/rc.d/这个目录下，除了我们刚才的 init.d 这个目录，我们还发现还有其它的 一些目录，诸如 rc0.d、rc1.d等，这些目录就分别对应了系统的7种启动级别，每个目录里面都存放了许多的文件，每个文件对应着一个特定的服务，并标志有是否开机启动以及启动顺序，例如我们进入到 rc5.d 这个目录 ，会看到如下的一些文件</p>
+
+<p><img src="http://img.blog.csdn.net/20170909195817423?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG4xMDQ4MDA2MzE3/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" /></p>
+
+<p>我们发现，在这些目录里面，存放的都是软链接文件，不过这每一个链接文件的名字都有着严格的规定。每一个链接文件都由3部分组成。
+例如：</p>
+
+<p><code class="highlighter-rouge">K01smartd -&gt; ../init.d/smartd         S12rsyslog -&gt; ../init.d/rsyslog</code></p>
+
+<ul>
+  <li>第一个部分第一个是字母K或者S，表示该服务是不是是不是开机自动启动，K表示开机不启动，S表示开机就启动</li>
+  <li>第二个部分是字母后面的数字，这个数字代表的是该服务的启动顺序，服务启动的顺序非常的重要，例如我们的网络服务需要在邮件服务之前启动，要不然邮件服务在没有网络服务的支持下就无法正常运行了</li>
+  <li>第三个部分就是对应服务的名字，该链接文件其实都是指向的是 init.d 这个目录下的System V脚本文件</li>
+</ul>
+
+<p>这时候，如果我们要修改某项服务的启动顺序，可以使用chkconfig命令</p>
+
+<hr />
+
+<h1 id="五chkfig命令的用法">五：chkfig命令的用法</h1>
+<p><strong><code class="highlighter-rouge">chkconfig --list</code></strong>，可以跟上服务名，单列出一项服务，不跟的话就是 查看所有服务的开机启动情况，第一列是服务名，第二列的0代表0级别下，off代表不启动，第二列的1代表1级别下，off同样是不启动，第三列的on就代表在3级别下会启动服务，以此类推</p>
+
+<p><img src="http://img.blog.csdn.net/20170909201647504?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG4xMDQ4MDA2MzE3/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" /></p>
+
+<p>chkconfig 服务名 on 开机自动启动，例如sshd服务</p>
+
+<p><img src="http://img.blog.csdn.net/20170909201654853?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG4xMDQ4MDA2MzE3/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" /></p>
+
+<p>chkconfig 服务名 off 开机不自动启动，例如sshd服务</p>
+
+<p><img src="http://img.blog.csdn.net/20170909201702627?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG4xMDQ4MDA2MzE3/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" /></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>chkconfig –level 级别 服务名 on</td>
+      <td>off 设置，例如将sshd服务的12345级别都设置成on</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="http://img.blog.csdn.net/20170909202952278?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbG4xMDQ4MDA2MzE3/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" /></p>
+
+  </div>
+
+  
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">刘宁</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              刘宁
+            
+            </li>
+            
+            <li><a href="mailto:your-email@example.com">your-email@example.com</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/useraddln"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">useraddln</span></a>
+
+          </li>
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

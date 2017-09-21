@@ -1,2 +1,0 @@
-# useraddln.github.io
-useradd
